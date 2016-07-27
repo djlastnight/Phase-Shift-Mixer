@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Storyboard x:Key="ExpandStoryboard">
+        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" 
+        To="1.15" Duration="0:0:0.2" />
+        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" 
+        To="1.15" Duration="0:0:0.2" />
+    </Storyboard>
+
+    <Storyboard x:Key="ShrinkStoryboard">
+        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" 
+        To="1" Duration="0:0:0.2" />
+        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" 
+        To="1" Duration="0:0:0.2" />
+    </Storyboard>
+
+    <Storyboard x:Key="ClickStoryboard" AutoReverse="True">
+        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+        To="0.9" Duration="0:0:0.1" />
+        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+        To="0.9" Duration="0:0:0.1" />
+    </Storyboard>
+</ResourceDictionary>

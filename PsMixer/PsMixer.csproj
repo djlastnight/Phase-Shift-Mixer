@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94864D4E-A39D-44B1-ABCA-2171DBC4CCD9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PsMixer</RootNamespace>
+    <AssemblyName>PsMixer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bass.Net">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\MoggPlayer\MoggPlayer\lib\Bass.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis.NAudioSupport, Version=0.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\NVorbis.NAudioSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ButtonsPlate.xaml.cs">
+      <DependentUpon>ButtonsPlate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\ChannelNameToImageSourceConverter.cs" />
+    <Compile Include="Enums\AudioDriver.cs" />
+    <Compile Include="Enums\ChannelName.cs" />
+    <Compile Include="Enums\OggFileName.cs" />
+    <Compile Include="Enums\PeakLevelUpdateSpeed.cs" />
+    <Compile Include="Enums\PsPlayerState.cs" />
+    <Compile Include="Helpers\IniReader.cs" />
+    <Compile Include="Helpers\PsFolderReader.cs" />
+    <Compile Include="LaneButton.xaml.cs">
+      <DependentUpon>LaneButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MediaButton.xaml.cs">
+      <DependentUpon>MediaButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BassChannel.cs" />
+    <Compile Include="Models\BassPsAudioPlayer.cs" />
+    <Compile Include="Models\IPsChannel.cs" />
+    <Compile Include="Models\PsStemInfo.cs" />
+    <Compile Include="Models\IPsAudioPlayer.cs" />
+    <Compile Include="Models\PlayerReportEventArgs.cs" />
+    <Compile Include="Models\SongScanner.cs" />
+    <Compile Include="Models\SongScannerEventArgs.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\VolumeChangedEventArgs.cs" />
+    <Compile Include="PlaybackWindow.xaml.cs">
+      <DependentUpon>PlaybackWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MixerView.xaml.cs">
+      <DependentUpon>MixerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PeakLevelHandler.cs" />
+    <Compile Include="Models\PsSong.cs" />
+    <Compile Include="Models\PsAudioPlayer.cs" />
+    <Compile Include="Models\NaudioChannel.cs" />
+    <Compile Include="ViewModels\MixerViewModel.cs" />
+    <Compile Include="PsVuMeter.xaml.cs">
+      <DependentUpon>PsVuMeter.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlaybackWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\MediaButtonsAnimations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ButtonsPlate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LaneButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MediaButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MixerLane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\SliderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MixerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PsVuMeter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MixerLane.xaml.cs">
+      <DependentUpon>MixerLane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\DS-Digital.TTF" />
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libraries\NAudio.dll" />
+    <None Include="Libraries\NVorbis.dll" />
+    <None Include="Libraries\NVorbis.NAudioSupport.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MixerLane\fader.png" />
+    <Resource Include="Images\MixerLane\mixer_label_bass.png" />
+    <Resource Include="Images\MixerLane\mixer_label_crowd.png" />
+    <Resource Include="Images\MixerLane\mixer_label_drummix.png" />
+    <Resource Include="Images\MixerLane\mixer_label_drums1.png" />
+    <Resource Include="Images\MixerLane\mixer_label_drums2.png" />
+    <Resource Include="Images\MixerLane\mixer_label_drums3.png" />
+    <Resource Include="Images\MixerLane\mixer_label_drums4.png" />
+    <Resource Include="Images\MixerLane\mixer_label_guitar.png" />
+    <Resource Include="Images\MixerLane\mixer_label_keys.png" />
+    <Resource Include="Images\MixerLane\mixer_label_song.png" />
+    <Resource Include="Images\MixerLane\mixer_label_vocalmix.png" />
+    <Resource Include="Images\MixerLane\mixer_label_vocals1.png" />
+    <Resource Include="Images\MixerLane\mixer_label_vocals2.png" />
+    <Resource Include="Images\MixerLane\mixer_mute_off.png" />
+    <Resource Include="Images\MixerLane\mixer_mute_on.png" />
+    <Resource Include="Images\MixerLane\mixer_slider.png" />
+    <Resource Include="Images\MixerLane\vol_panel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Buttons\folder.png" />
+    <Resource Include="Images\Buttons\info.png" />
+    <Resource Include="Images\LCD\manual_off.png" />
+    <Resource Include="Images\LCD\manual_on.png" />
+    <Resource Include="Images\LCD\metal1.png" />
+    <Resource Include="Images\LCD\metal2.png" />
+    <Resource Include="Images\Buttons\next.png" />
+    <Resource Include="Images\Buttons\pause.png" />
+    <Resource Include="Images\Buttons\play.png" />
+    <Resource Include="Images\Buttons\prev.png" />
+    <Resource Include="Images\LCD\repeat_off.png" />
+    <Resource Include="Images\LCD\repeat_on.png" />
+    <Resource Include="Images\Buttons\reset.png" />
+    <Resource Include="Images\Buttons\rewind_back.png" />
+    <Resource Include="Images\Buttons\rewind_forward.png" />
+    <Resource Include="Images\LCD\shuffle_off.png" />
+    <Resource Include="Images\LCD\shuffle_on.png" />
+    <Resource Include="Images\Buttons\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LCD\mixer_panel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Buttons\pause_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DefaultAlbumArt\default_album_art.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MixerLane\vu_meter.png" />
+    <Resource Include="Images\Loading\circle.png" />
+    <Resource Include="Images\Loading\ring.png" />
+    <Content Include="Libraries\bass.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\bassmix.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\basswasapi.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VuShaderEffect\VuShaderEffect.csproj">
+      <Project>{edb5e8a6-830c-4ea0-b309-c35019aba183}</Project>
+      <Name>VuShaderEffect</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

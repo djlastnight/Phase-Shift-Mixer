@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="PsMixer.MixerLane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModels="clr-namespace:PsMixer.ViewModels"
+             xmlns:Converters="clr-namespace:PsMixer.Converters"
+             xmlns:Views="clr-namespace:PsMixer.Views"
+             xmlns:Models="clr-namespace:PsMixer.Models"
+             xmlns:my="clr-namespace:PsMixer"
+             xmlns:fx="clr-namespace:VuShaderEffect;assembly=VuShaderEffect"
+             mc:Ignorable="d" 
+             d:DesignHeight="300"
+             d:DesignWidth="50"
+             MouseWheel="OnMouseWheel">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.012*"/>
+            <RowDefinition Height="0.205*"/>
+            <RowDefinition Height="0.045*"/>
+            <RowDefinition Height="0.450*"/>
+            <RowDefinition Height="0.028*"/>
+            <RowDefinition Height="0.110*"/>
+            <RowDefinition Height="0.118*"/>
+            <RowDefinition Height="0.059*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.21*"/>
+            <ColumnDefinition Width="0.58*"/>
+            <ColumnDefinition Width="0.21*"/>
+        </Grid.ColumnDefinitions>
+        <my:PsVuMeter Grid.Row="1"
+                      Grid.Column="1" 
+                      VuLevel="{Binding RelativeSource={RelativeSource AncestorType=my:MixerLane},
+                                        Path=Level}"/>
+        <Image Source="/PsMixer;component/Images/MixerLane/mixer_slider.png"
+               Grid.RowSpan="8"
+               Grid.ColumnSpan="3"
+               Stretch="Fill">
+        </Image>
+        <Grid Name="Ticks"
+              Grid.Row="3"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="1" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="2" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="3" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="4" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="5" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="6" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="7" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="8" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="9" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="10" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="11" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="12" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="13" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="14" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="15" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="16" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="17" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="18" Style="{StaticResource SliderBigTicksStyle}"/>
+            <Rectangle Grid.Row="19" Style="{StaticResource SliderSmallTicksStyle}"/>
+            <Rectangle Grid.Row="20" Style="{StaticResource SliderBigTicksStyle}"/>
+        </Grid>
+
+        <Slider Grid.Row="3"
+                Grid.Column="1"
+                Orientation="Vertical"
+                Minimum="{x:Static Models:PsAudioPlayer.VolumeMinValue}"
+                Maximum="{x:Static Models:PsAudioPlayer.VolumeMaxValue}"
+                LargeChange="{x:Static Models:PsAudioPlayer.VolumeStep}"
+                SmallChange="{x:Static Models:PsAudioPlayer.VolumeStep}"
+                TickFrequency="{x:Static Models:PsAudioPlayer.VolumeStep}"
+                Value="{Binding RelativeSource={RelativeSource AncestorType=my:MixerLane},
+                                Path=Volume}"
+                IsSnapToTickEnabled="True"
+                ValueChanged="OnSliderValueChanged"
+                Foreground="Orange"
+                Style="{StaticResource VolumeSliderStyle}">
+        </Slider>
+        <Rectangle Grid.Row="5"
+                   Grid.ColumnSpan="5" Opacity="1">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,1"
+                                     EndPoint="1,1">
+                    <GradientStop Offset="0" Color="Transparent"/>
+                    <GradientStop Offset="0.10" Color="Transparent"/>
+                    <GradientStop Offset="0.20" Color="#FFA09B9B"/>
+                    <GradientStop Offset="0.25" Color="#FF5F5F5F"/>
+                    <GradientStop Offset="0.75" Color="#FF878787"/>
+                    <GradientStop Offset="0.80" Color="#FF747474"/>
+                    <GradientStop Offset="0.90" Color="Transparent"/>
+                    <GradientStop Offset="1" Color="Transparent"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="10" Direction="-100" ShadowDepth="6"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=my:MixerLane},
+                                  Path=Volume, StringFormat=F1}"
+                   Grid.Row="5"
+                   Grid.ColumnSpan="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontFamily="/PsMixer;component/Fonts/#DS-Digital"
+                   FontSize="22"
+                   Foreground="#FFFFFFA5">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="6"
+                                  Color="#FFD8FF00"
+                                  Direction="-90"
+                                  Opacity="1"
+                                  ShadowDepth="4" />
+            </TextBlock.Effect>
+        </TextBlock>
+        <my:LaneButton Grid.Row="6"
+                       Grid.ColumnSpan="3"
+                       CheckedSource="/PsMixer;component/Images/MixerLane/mixer_mute_on.png"
+                       UncheckedSource="/PsMixer;component/Images/MixerLane/mixer_mute_off.png"
+                       CheckedChanged="OnMuteButtonValueChanged"/>
+        <Image Source="{Binding RelativeSource={RelativeSource AncestorType=my:MixerLane},
+                                Path=ChannelName,
+                                Converter={StaticResource ChannelNameToImageSourceConverter}}"
+               Visibility="{Binding RelativeSource={RelativeSource AncestorType=my:MixerLane},
+                                    Path=IsActive,
+                                    Converter={StaticResource BoolToVisibilityConveter}}"
+               Stretch="Fill"
+               Grid.Row="7"
+               Grid.ColumnSpan="3"
+               Margin="10,5,10,5"/>
+    </Grid>
+</UserControl>

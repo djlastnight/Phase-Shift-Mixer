@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="PsMixer.ButtonsPlate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Mixer="clr-namespace:PsMixer"
+             mc:Ignorable="d"
+             d:DesignWidth="300"
+             d:DesignHeight="40"
+             Padding="2,6,2,0">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/PsMixer;component/Images/LCD/metal1.png"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- media buttons -->
+        <Mixer:MediaButton Grid.Column="1"
+                           ImageSource="/PsMixer;component/Images/Buttons/play.png"
+                           Command="{Binding PlayCommand}"/>
+        <Mixer:MediaButton Grid.Column="1"
+                           ImageSource="/PsMixer;component/Images/Buttons/pause.png"
+                           Command="{Binding PauseCommand}">
+            <Mixer:MediaButton.Style>
+                <Style TargetType="Mixer:MediaButton">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding PlayState}" Value="Stopped">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PlayState}" Value="Playing">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PlayState}" Value="Paused">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Mixer:MediaButton.Style>
+        </Mixer:MediaButton>
+        <Mixer:MediaButton Grid.Column="1"
+                           ImageSource="/PsMixer;component/Images/Buttons/pause_active.png"
+                           Command="{Binding ResumeCommand}">
+            <Mixer:MediaButton.Style>
+                <Style TargetType="Mixer:MediaButton">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding PlayState}" Value="Stopped">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PlayState}" Value="Playing">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PlayState}" Value="Paused">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Mixer:MediaButton.Style>
+        </Mixer:MediaButton>
+        <Mixer:MediaButton Grid.Column="3"
+                           ImageSource="/PsMixer;component/Images/Buttons/prev.png"
+                           Command="{Binding PreviousTrackCommand}"/>
+        <Mixer:MediaButton Grid.Column="5"
+                           ImageSource="/PsMixer;component/Images/Buttons/rewind_back.png"
+                           Command="{Binding RewindBackCommand}"/>
+        <Mixer:MediaButton Grid.Column="7"
+                           ImageSource="/PsMixer;component/Images/Buttons/stop.png"
+                           Command="{Binding StopCommand}"/>
+        <Mixer:MediaButton Grid.Column="9"
+                           ImageSource="/PsMixer;component/Images/Buttons/rewind_forward.png"
+                           Command="{Binding RewindForwardCommand}"/>
+        <Mixer:MediaButton Grid.Column="11"
+                           ImageSource="/PsMixer;component/Images/Buttons/next.png"
+                           Command="{Binding NextTrackCommand}"/>
+        <Mixer:MediaButton Grid.Column="14"
+                           ImageSource="/PsMixer;component/Images/Buttons/reset.png"
+                           Command="{Binding ResetSlidersCommand}"/>
+        <Mixer:MediaButton Grid.Column="16"
+                           ImageSource="/PsMixer;component/Images/Buttons/folder.png"
+                           Command="{Binding AddFolderCommand}"/>
+        <Mixer:MediaButton Grid.Column="18"
+                           ImageSource="/PsMixer;component/Images/Buttons/info.png"/>
+        
+        <!-- LCD -->
+        <Grid Name="LCD"
+              Grid.Column="20"
+              Grid.ColumnSpan="12">
+            <Grid.Background>
+                <ImageBrush ImageSource="/PsMixer;component/Images/LCD/mixer_panel.png"/>
+            </Grid.Background>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="10"
+                                  Color="Black"
+                                  Direction="50"
+                                  ShadowDepth="8"/>
+            </Grid.Effect>
+            <TextBlock FontFamily="/PsMixer;component/Fonts/#DS-Digital"
+                       FontSize="28"
+                       Foreground="#FF6CD2FF"
+                       ToolTip="Elapsed Time">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="8"
+                                      ShadowDepth="5"
+                                      Color="#FF00EBFF"
+                                      Direction="-90" />
+                </TextBlock.Effect>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0:D2}:{1:D2}">
+                        <Binding Path="PlayerCurrentTime.Minutes"/>
+                        <Binding Path="PlayerCurrentTime.Seconds"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock FontFamily="/PsMixer;component/Fonts/#DS-Digital"
+                       FontSize="28"
+                       Foreground="#FF00FFD8"
+                       ToolTip="Remaining Time"
+                       HorizontalAlignment="Right">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0:D2}:{1:D2}">
+                        <Binding Path="PlayerRemainingTime.Minutes"/>
+                        <Binding Path="PlayerRemainingTime.Seconds"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <Slider Minimum="0"
+                    Maximum="1"
+                    Value="{Binding PlayerProgress}"
+                    Height="20"
+                    TickFrequency="0.01"
+                    IsSnapToTickEnabled="True"
+                    SmallChange="0.01"
+                    LargeChange="0.1"
+                    IsMoveToPointEnabled="True"
+                    VerticalAlignment="Bottom"/>
+        </Grid>
+    </Grid>
+</UserControl>
